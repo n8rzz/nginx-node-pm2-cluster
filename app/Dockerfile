@@ -1,7 +1,7 @@
 FROM node:9 as build
 
 WORKDIR /app
-COPY /app/package.json /app/index.js ./
+COPY package.json index.js ./
 RUN npm install
 
 FROM node:9-alpine

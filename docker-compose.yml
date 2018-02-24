@@ -1,0 +1,10 @@
+app:
+  build: app/
+  ports:
+    - "3000:3000"
+  links:
+    - redis
+
+redis:
+  image: redis
+  command: redis-server --appendonly yes
