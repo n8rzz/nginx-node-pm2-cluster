@@ -17,6 +17,7 @@ services:
       - "8081"
     environment:
       - PORT_NUMBER=8081
+      - LOG_LEVEL=common
   web2:
     build: ./app
     links:
@@ -25,6 +26,7 @@ services:
       - "8082"
     environment:
       - PORT_NUMBER=8082
+      - LOG_LEVEL=common
 
   redis:
     image: redis
