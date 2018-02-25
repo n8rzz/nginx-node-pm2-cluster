@@ -6,7 +6,6 @@ services:
     links:
       - web1:web1
       - web2:web2
-      - web3:web3
     ports:
       - "80:80"
 
@@ -26,14 +25,6 @@ services:
       - "8082"
     environment:
       - PORT_NUMBER=8082
-  web3:
-    build: ./app
-    links:
-      - redis
-    ports:
-      - "8083"
-    environment:
-      - PORT_NUMBER=8083
 
   redis:
     image: redis
