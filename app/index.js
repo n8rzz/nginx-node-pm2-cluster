@@ -13,7 +13,7 @@ redisClient.on('error', (err) => {
 });
 
 const REDIS_OPTIONS = {};
-const PORT_NUMBER = process.env.PORT_NUMBER || 3000;
+const PORT_NUMBER = process.env.PORT_NUMBER || 8080;
 
 app.use(session({
     saveUninitialized: true,
@@ -39,6 +39,6 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT_NUMBER, () => {
-    console.log(`Example app listening on port 3000!`);
+    console.log(`Example app listening on port ${PORT_NUMBER}!`);
 })
 

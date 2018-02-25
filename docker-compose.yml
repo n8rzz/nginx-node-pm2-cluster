@@ -1,10 +1,39 @@
-app:
-  build: app/
-  ports:
-    - "3000:3000"
-  links:
-    - redis
+version: "3"
 
-redis:
-  image: redis
-  command: redis-server --appendonly yes
+services:
+  nginx:
+    build: ./nginx
+    links:
+      - web1:web1
+      - web2:web2
+      - web3:web3
+    ports:
+      - "80:80"
+
+  web1:
+    build: ./app
+    links:
+      - redis
+    ports:
+      - "8081"
+    environment:
+      - PORT_NUMBER=8081
+  web2:
+    build: ./app
+    links:
+      - redis
+    ports:
+      - "8082"
+    environment:
+      - PORT_NUMBER=8082
+  web3:
+    build: ./app
+    links:
+      - redis
+    ports:
+      - "8083"
+    environment:
+      - PORT_NUMBER=8083
+
+  redis:
+    image: redis

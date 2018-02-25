@@ -6,6 +6,6 @@ RUN npm install
 
 FROM node:9-alpine
 COPY --from=build /app /
-EXPOSE 3000
+EXPOSE 8080
 
 CMD [ "npm", "start" ]
