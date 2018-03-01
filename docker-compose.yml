@@ -4,12 +4,11 @@ services:
   nginx:
     build: ./nginx
     links:
-      - web1:web1
-      - web2:web2
+      - web:web
     ports:
       - "80:80"
 
-  web1:
+  web:
     build: ./app
     links:
       - redis
@@ -17,15 +16,6 @@ services:
       - "8081"
     environment:
       - PORT_NUMBER=8081
-      - LOG_LEVEL=common
-  web2:
-    build: ./app
-    links:
-      - redis
-    ports:
-      - "8082"
-    environment:
-      - PORT_NUMBER=8082
       - LOG_LEVEL=common
 
   redis:

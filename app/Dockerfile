@@ -1,11 +1,8 @@
-FROM node:9 as build
+FROM keymetrics/pm2:latest-alpine as build
 
 WORKDIR /app
 ADD . /app
 RUN npm install
-
-FROM node:9-alpine
-COPY --from=build /app /
 EXPOSE 8080
 
-CMD [ "npm", "start" ]
+CMD [ "pm2-runtime", "process.yml" ]

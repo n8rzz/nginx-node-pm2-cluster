@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./index.js "
+    "start": "pm2-runtime start process.yml"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +13,7 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "morgan": "^1.9.0",
+    "pm2": "^2.10.1",
     "redis": "^2.8.0"
   }
 }
