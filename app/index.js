@@ -29,9 +29,27 @@ app.get('/', (req, res) => {
         req.session.count = 0;
     }
 
-    req.session.count++
+    res.send(`current count: ${req.session.count}`);
+});
 
-    return res.send(`current count: ${req.session.count}`);
+app.get('/add', (req, res) => {
+    if (!req.session.count) {
+        req.session.count = 0;
+    }
+
+    req.session.count++;
+
+    res.send(`count incremented: ${req.session.count}`);
+});
+
+app.get('/sub', (req, res) => {
+    if (!req.session.count) {
+        req.session.count = 0;
+    }
+
+    req.session.count--;
+
+    res.send(`count decremented: ${req.session.count}`);
 });
 
 app.listen(PORT_NUMBER, () => {
