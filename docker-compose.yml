@@ -14,9 +14,11 @@ services:
   db:
     image: postgres
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: clusterdb_user
+      POSTGRES_PASSWORD: clusterdb
     volumes:
-      - ./pg/data:/var/lib/postgresql/data
+      - ./pg/schema:/docker-entrypoint-initdb.d/
+    #   - ./pg/data:/var/lib/postgresql/data
 
   web:
     build: ./app
@@ -28,7 +30,7 @@ services:
     environment:
       PORT_NUMBER: 8081
       LOG_LEVEL: common
-      PGUSER: postgres
-      PGPASSWORD: postgres
+      PGUSER: clusterdb_user
+      PGPASSWORD: clusterdb
       PGDATABASE: clusterdb
       PGPORT: 5432
