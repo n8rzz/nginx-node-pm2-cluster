@@ -3,9 +3,10 @@ const morgan = require('morgan');
 const app = express();
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
-const redisClient = require('./db/redisClient');
+const redisClient = require('./clients/redisClient');
+// const pgClient = require('./clients/pgClient');
 
-const REDIS_OPTIONS = {};
+// const REDIS_OPTIONS = {};
 const PORT_NUMBER = process.env.PORT_NUMBER || 8080;
 const LOG_LEVEL = process.env.LOG_LEVEL || 'combined';
 
@@ -50,6 +51,10 @@ app.get('/sub', (req, res) => {
     req.session.count--;
 
     res.send(`count decremented: ${req.session.count}`);
+});
+
+app.get('/pg', (req, res) => {
+    res.send('do postgres');
 });
 
 app.listen(PORT_NUMBER, () => {
