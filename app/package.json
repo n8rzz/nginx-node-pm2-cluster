@@ -1,16 +1,16 @@
 {
-  "name": "node",
+  "name": "cluster-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "pm2-runtime start process.yml",
-    "migrate": "DATABASE_URL=postgres://postgres:postgres@localhost:5432/clusterdb node-pg-migrate"
+    "start": "pm2-runtime start process.yml"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "connect-redis": "^3.3.3",
+    "dotenv": "^6.0.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "morgan": "^1.9.0",

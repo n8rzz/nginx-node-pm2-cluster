@@ -11,26 +11,11 @@ services:
   redis:
     image: redis
 
-  db:
-    image: postgres
-    environment:
-      POSTGRES_USER: clusterdb_user
-      POSTGRES_PASSWORD: clusterdb
-    volumes:
-      - ./pg/schema:/docker-entrypoint-initdb.d/
-    #   - ./pg/data:/var/lib/postgresql/data
-
   web:
     build: ./app
     links:
-      - db
       - redis
     ports:
       - "8081"
     environment:
       PORT_NUMBER: 8081
-      LOG_LEVEL: common
-      PGUSER: clusterdb_user
-      PGPASSWORD: clusterdb
-      PGDATABASE: clusterdb
-      PGPORT: 5432

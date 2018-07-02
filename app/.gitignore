@@ -75,5 +75,6 @@ atom/recovery
 atom/split-diff
 atom/storage
 
+.env
 !atom/.apm/package-sync
 !atom/packages/package-sync
