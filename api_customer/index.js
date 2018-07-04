@@ -8,8 +8,7 @@ const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const redis = require('redis');
 
-const incrementorRoutes = require('./routes/incrementor');
-const userRouter = require('./routes/user');
+const customerRouter = require('./routes/customer');
 
 // const REDIS_OPTIONS = {};
 const PORT_NUMBER = process.env.PORT_NUMBER || 8080;
@@ -35,10 +34,9 @@ app.use(session({
     }
 }));
 
-app.use('/user', userRouter);
-app.use('/', incrementorRoutes);
+app.use('/', customerRouter);
 
 app.listen(PORT_NUMBER, () => {
-    console.log(`Example app listening on port ${PORT_NUMBER}!`);
+    console.log(`${process.env.APP_NAME} listening on port ${PORT_NUMBER}!`);
 });
 

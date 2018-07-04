@@ -1,21 +1,31 @@
 version: "3"
 
 services:
-  nginx:
-    build: ./nginx
-    links:
-      - api_user:api_user
-    ports:
-      - "8080:8080"
-
   redis:
     image: redis
 
   api_user:
-    build: ./app
+    build: ./api_user
     links:
       - redis
     ports:
       - "3001"
     environment:
       PORT_NUMBER: 3001
+
+  api_customer:
+    build: ./api_customer
+    links:
+      - redis
+    ports:
+      - "3002"
+    environment:
+      PORT_NUMBER: 3002
+
+  nginx:
+    build: ./nginx
+    links:
+      - api_customer
+      - api_user
+    ports:
+      - "8080:8080"
